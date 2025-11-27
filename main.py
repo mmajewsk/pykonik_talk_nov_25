@@ -71,12 +71,13 @@ def create_graph(llm: BaseLanguageModel) -> Any:
                 if isinstance(piece, str):
                     buf += piece
                 else:
-                    for el in piece:
-                        if el.get("type", "") == "text":
-                            buf += el["text"]
-                        else:
-                            print(f"INVALID TYPE: {piece}")
-                            break
+                    raise ValueError
+                    # for el in piece:
+                    #     if el.get("type", "") == "text":
+                    #         buf += el["text"]
+                    #     else:
+                    #         print(f"INVALID TYPE: {piece}")
+                    #         break
                 while m := OBJ_LINE.match(buf):
                     raw = m.group(1)
                     buf = buf[m.end() :]
