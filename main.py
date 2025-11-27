@@ -10,6 +10,21 @@ from langgraph.runtime import Runtime
 
 
 def process_book(item):
+    import random
+
+    if not isinstance(item, dict):
+        return item
+
+    required_fields = ['title', 'author', 'isbn', 'genre', 'reason']
+    for field in required_fields:
+        if field not in item:
+            item[field] = ""
+
+    if random.random() < 0.25:
+        item["is_in_store"] = "❌"
+    else:
+        item["is_in_store"] = "✅"
+
     print(f"📚 {item.get('title')} by {item.get('author')}")
     return item
 
